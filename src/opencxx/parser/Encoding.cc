@@ -171,10 +171,10 @@ void Encoding::NoName()
     static int i = 0;
     static unsigned char name[] = "`0000";
     int n = i++;
-    name[1] = n / 1000 + '0';
-    name[2] = (n / 100) % 10 + '0';
-    name[3] = (n / 10) % 10 + '0';
-    name[4] = n % 10 + '0';
+    name[1] = static_cast<unsigned char>(n / 1000 + '0');
+    name[2] = static_cast<unsigned char>((n / 100) % 10 + '0');
+    name[3] = static_cast<unsigned char>((n / 10) % 10 + '0');
+    name[4] = static_cast<unsigned char>(n % 10 + '0');
     AppendWithLen((char*)name, 5);
 }
 

@@ -1077,10 +1077,6 @@ int Lex::ReadSeparator(char c, unsigned top)
 	token_len = 1;
 	return SingleCharOp(c);
     }
-
-    cerr << "*** An invalid character has been found! ("
-	 << (int)c << ',' << (int)c1 << ")\n";
-    return token(BadToken);
 }
 
 int Lex::SingleCharOp(unsigned char c)

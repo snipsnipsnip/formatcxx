@@ -45,7 +45,6 @@
 #include <opencxx/parser/AbstractTranslatingWalker.h>
 #include <opencxx/parser/AbstractTypingWalker.h>
 #include <opencxx/parser/LeafThis.h>
-#include <opencxx/TypeInfo.h>
 #include <opencxx/parser/token-names.h>
 
 namespace Opencxx

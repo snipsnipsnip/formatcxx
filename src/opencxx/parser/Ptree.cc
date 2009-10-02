@@ -48,7 +48,6 @@
 #include <string.h>
 #include <string>
 #include <strstream>
-#include <sys/time.h>
 #include <opencxx/parser/ErrorLog.h>
 #include <opencxx/parser/MopMsg.h>
 #include <opencxx/parser/TheErrorLog.h>
@@ -490,7 +489,7 @@ Ptree* Ptree::Make(const char* pat, ...)
 		j += len;
 	    }
 	    else if(c == 'c')
-		buf[j++] = va_arg(args, int);
+		buf[j++] = static_cast<char>(va_arg(args, int));
 	    else if(c == 'p'){
 		p = va_arg(args, Ptree*);
 		if(p == 0)

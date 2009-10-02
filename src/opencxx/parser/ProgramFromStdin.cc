@@ -84,7 +84,7 @@ char ProgramFromStdin::Get()
 	if(c == EOF)
 	    c = '\0';
 
-	buf[size++] = c;
+	buf[size++] = static_cast<char>(c);
     }
 
     if(buf[index] == '\0')

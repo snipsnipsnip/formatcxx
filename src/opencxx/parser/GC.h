@@ -27,9 +27,29 @@
 #ifndef guard_opencxx_parser_GC_h
 #define guard_opencxx_parser_GC_h
 
-#include <cstdlib>
-
 // define dummy replacements for GC allocator operators
+
+#ifdef USE_BOEHM_GC
+
+#include <gc/gc_cpp.h>
+
+namespace Opencxx
+{
+
+typedef gc LightObject;
+typedef gc_cleanup Object;
+
+inline
+int GcCount()
+{
+    return GC_gc_no;
+}
+
+}
+
+#else
+
+#include <new>
 
 namespace Opencxx
 {
@@ -46,14 +66,16 @@ int GcCount()
 
 }
 
-inline void* operator new(size_t size, Opencxx::GCPlacement gcp)
+inline void* operator new(std::size_t size, Opencxx::GCPlacement gcp)
 {
     return ::operator new(size);
 }
 
-inline void* operator new [](size_t size, Opencxx::GCPlacement gcp)
+inline void* operator new [](std::size_t size, Opencxx::GCPlacement gcp)
 {
     return ::operator new [](size);
 }
+
+#endif
 
 #endif

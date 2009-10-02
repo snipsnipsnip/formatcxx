@@ -132,7 +132,8 @@ bool Parser::rDefinition(Ptree*& p)
 	res = rUsing(p);
     else {
 	Ptree* c = lex->GetComments2();
-	if (res = rDeclaration(p))
+	res = rDeclaration(p);
+	if (res)
 	{
 	    PtreeUtil::SetDeclaratorComments(p, c);
 	}
@@ -2210,11 +2211,14 @@ bool Parser::rArgDeclListOrInit(Ptree*& arglist, bool& is_args,
 	    }
 
 	lex->Restore(pos);
-	return(is_args = rArgDeclList(arglist, encode));
+	is_args = rArgDeclList(arglist, encode);
+	return is_args;
     }
     else
-	if(is_args = rArgDeclList(arglist, encode))
+	if(rArgDeclList(arglist, encode)) {
+	    is_args = true;
 	    return true;
+    }
 	else{
 	    lex->Restore(pos);
 	    encode.Clear();

@@ -72,12 +72,12 @@ private:
             case Error:   return "error";
             case Fatal:   return "error";
             case Warning: return "warning";
-            default:      assert(! "unknown category");
+            default: throw std::runtime_error("unknown category");
         }
-        abort();
     }
 
 private:
+    MopMsg &operator =(const MopMsg &);
     const Severity    severity_;
     const std::string where_;
     const std::string what_;

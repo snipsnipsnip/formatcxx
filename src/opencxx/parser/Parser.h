@@ -197,6 +197,7 @@ private:
     void ShowMessageHead(char*);
 
 private:
+    Parser &operator =(const Parser &);
     Lex* lex;
     MetaclassLoader* metaclassLoader_; // :TODO: make it an auto_ptr
     ErrorLog& errorLog_;

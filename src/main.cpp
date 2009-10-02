@@ -10,23 +10,32 @@ using Opencxx::Lex;
 using Opencxx::Ptree;
 using Opencxx::CerrErrorLog;
 
-class HogeProgram : public Opencxx::Program
+class FooProgram : public Opencxx::Program
 {
 public:
-    HogeProgram()
+    FooProgram()
         :
-        Program("hoge")
+        Program("foo")
     {
         index = 0;
-        buf = "int hoge() { }";
+        buf = "int foo() { ";
         size = std::strlen(buf) + 1;
     }
 };
 
 int main()
 {
-    HogeProgram program;
+    FooProgram program;
+    Lex lex(&program);
     CerrErrorLog log;
-    Lex lex(&program, log);
-    Parser parser(lex);
+    Parser parser(&lex, log);
+    
+    Ptree *ptree = 0;
+    
+    parser.rProgram(ptree);
+    
+    if (ptree)
+    {
+        ptree->Display();
+    }
 }
