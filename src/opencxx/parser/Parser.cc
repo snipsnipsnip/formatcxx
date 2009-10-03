@@ -4631,7 +4631,7 @@ bool Parser::SyntaxError()
     return true; // :TODO: change return type to void
 }
 
-Parser::Parser(Lex* lex, ErrorLog& errorLog) 
+Parser::Parser(ILex* lex, ErrorLog& errorLog) 
   : lex(lex)
   , metaclassLoader_(new NullMetaclassLoader())
   	// :TODO: for the time being we pretend that this is

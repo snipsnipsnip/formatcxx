@@ -64,7 +64,22 @@ class Token;
 class Ptree;
 class HashTable;
 
-class Lex : public Object {
+class ILex
+{
+public:
+    virtual int GetToken(Token&) = 0;
+    virtual int LookAhead(int) = 0;
+    virtual int LookAhead(int, Token&) = 0;
+    virtual char* Save() = 0;
+    virtual void Restore(char*) = 0;
+    virtual void GetOnlyClosingBracket(Token&) = 0;
+    virtual Ptree* GetComments() = 0;
+    virtual Ptree* GetComments2() = 0;
+    virtual unsigned LineNumber(char*, char*&, int&) = 0;
+    virtual ~ILex() { }
+};
+
+class Lex : public Object, public ILex {
 public:
     Lex(Program*, bool wchars = false, bool recognizeOpencxxExtensions = true);
     int GetToken(Token&);

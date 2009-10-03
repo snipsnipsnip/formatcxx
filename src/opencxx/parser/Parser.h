@@ -38,7 +38,7 @@
 namespace Opencxx
 {
 
-class Lex;
+class ILex;
 class Token;
 class Environment;
 class Ptree;
@@ -55,7 +55,7 @@ class ErrorLog;
 
 class Parser : public Object {
 public:
-    Parser(Lex* lex, ErrorLog& errorLog);
+    Parser(ILex* lex, ErrorLog& errorLog);
     unsigned LineNumber(char* pos, char*& fname, int& fname_len);
 
     bool rProgram(Ptree*&);
@@ -198,7 +198,7 @@ private:
 
 private:
     Parser &operator =(const Parser &);
-    Lex* lex;
+    ILex* lex;
     MetaclassLoader* metaclassLoader_; // :TODO: make it an auto_ptr
     ErrorLog& errorLog_;
     bool syntaxErrors_;

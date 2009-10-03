@@ -98,7 +98,7 @@ class Makemakefileincludeme
   
   private
   def obj_path(c)
-    "$(OBJDIR)/#{c.name.gsub(c.ext, '.$(O)')}"
+    "$(OBJDIR)/#{c.path.gsub('/', '.').gsub(c.ext, '.$(O)')}"
   end
   
   def file_list(name, list, separator=" \\\n  ")
